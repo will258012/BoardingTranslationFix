@@ -44,6 +44,6 @@ namespace BoardingTranslationFix
 
         public void OnDisabled() => HarmonyPatcher.TryUnpatch(HarmonyId);
         private Assembly ModAssembly => Assembly.GetExecutingAssembly();
-        internal const string NewBoardingTranslate = "上客";
+        
     }
 }

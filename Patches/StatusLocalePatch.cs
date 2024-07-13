@@ -1,12 +1,13 @@
 ﻿using ColossalFramework.Globalization;
 using HarmonyLib;
+using System.Collections.Generic;
 
 namespace BoardingTranslationFix.Patches
 {
     [HarmonyPatch]
     public static class StatusLocalePatch
     {
-        private static readonly string[] TargetIds =
+        private static readonly HashSet<string> TargetIds = new HashSet<string>
         {
             "VEHICLE_STATUS_TRAM_STOPPED",
             "VEHICLE_STATUS_BUS_STOPPED",
@@ -15,18 +16,18 @@ namespace BoardingTranslationFix.Patches
             "VEHICLE_STATUS_PASSENGERSHIP_STOPPED",
             "VEHICLE_STATUS_FERRY_STOPPED",
         };
-
+            
         [HarmonyPatch(typeof(Locale), nameof(Locale.Get), new[] { typeof(string) })]
-        [HarmonyPrefix]
-        public static bool GetPatch(ref string __result, string id)
+        public static bool Prefix(ref string __result, string id)
         {
-            if (System.Array.Exists(TargetIds, element => element == id))
+            if (TargetIds.Contains(id))
             {
-                __result = "上客";
+                __result = NewBoardingTranslate;
                 return false;
             }
             return true;
         }
+        private const string NewBoardingTranslate = "上客";
     }
 }
 
