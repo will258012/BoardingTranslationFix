@@ -9,7 +9,7 @@ namespace BoardingTranslationFix
     public class Mod : IUserMod, ILoadingExtension
     {
         public string Name => "Boarding Translation Fix v" + ModVersion;
-        public string Description => "修正 “Boarding” 的中文翻译";
+        public string Description => "中文翻译修正";
         private const string HarmonyId = "Will258012.BoardingTranslationFix";
 
         private string ModVersion
@@ -44,6 +44,6 @@ namespace BoardingTranslationFix
 
         public void OnDisabled() => HarmonyPatcher.TryUnpatch(HarmonyId);
         private Assembly ModAssembly => Assembly.GetExecutingAssembly();
-        
+
     }
 }
