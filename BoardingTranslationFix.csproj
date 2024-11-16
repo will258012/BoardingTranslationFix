@@ -69,4 +69,5 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <Import Project="..\WillCommons\WillCommonsPatchingShared.projitems" Label="Shared" />
 </Project>
